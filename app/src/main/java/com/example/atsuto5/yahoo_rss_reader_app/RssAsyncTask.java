@@ -1,5 +1,7 @@
 package com.example.atsuto5.yahoo_rss_reader_app;
 
+import android.app.Activity;
+import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.text.LoginFilter;
 import android.util.Log;
@@ -20,12 +22,21 @@ public class RssAsyncTask extends AsyncTask<String, Integer, RssAdapter> {
     private ListView mRssListView;
     private RssAdapter mRssAdapter;
     private static final String TAG = "RssAsyncTask";
+    private MainActivity mActivity;
+    private ProgressDialog mLoadingDialog;
 
 
-    public RssAsyncTask(ListView listView, RssAdapter rssAdapter) {
+    public RssAsyncTask(ListView listView, RssAdapter rssAdapter, MainActivity activity) {
         this.mRssListView = listView;
         this.mRssAdapter = rssAdapter;
+        this.mActivity = activity;
         }
+    @Override
+    protected void onPreExecute(){
+        mLoadingDialog = new ProgressDialog(mActivity);
+        mLoadingDialog.setMessage("Now Loading...");
+        mLoadingDialog.show();
+    }
 
 
     @Override
@@ -81,6 +92,7 @@ public class RssAsyncTask extends AsyncTask<String, Integer, RssAdapter> {
 
     @Override
     protected void onPostExecute(RssAdapter res) {
+        mLoadingDialog.dismiss();
         mRssListView.setAdapter(res);
         }
 }

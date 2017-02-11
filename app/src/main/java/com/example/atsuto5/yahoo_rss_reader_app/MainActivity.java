@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
         ArrayList mItems = new ArrayList();
         RssAdapter mRssAdapter = new RssAdapter(this,R.layout.rss_beans,mItems);
         ListView mRssList = (ListView)findViewById(R.id.Rss_ListView);
-        RssAsyncTask mRssAsync = new RssAsyncTask(mRssList,mRssAdapter);
+        RssAsyncTask mRssAsync = new RssAsyncTask(mRssList, mRssAdapter, this);
         mRssAsync.execute("");
     }
 }
