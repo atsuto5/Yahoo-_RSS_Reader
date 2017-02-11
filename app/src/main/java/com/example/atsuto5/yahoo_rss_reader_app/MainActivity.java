@@ -9,11 +9,6 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    ArrayList mItems;
-    RssAdapter mRssAdapter;
-    ListView mRssList;
-    RssAsyncTask mRssAsync;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

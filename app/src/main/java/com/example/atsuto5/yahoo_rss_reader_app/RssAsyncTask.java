@@ -17,14 +17,14 @@ import org.xmlpull.v1.XmlPullParser;
  */
 public class RssAsyncTask extends AsyncTask<String, Integer, RssAdapter> {
 
-    private ListView listView;
-    private RssAdapter rssAdapter;
+    private ListView mRssListView;
+    private RssAdapter mRssAdapter;
     private static final String TAG = "RssAsyncTask";
 
 
     public RssAsyncTask(ListView listView, RssAdapter rssAdapter) {
-        this.listView = listView;
-        this.rssAdapter = rssAdapter;
+        this.mRssListView = listView;
+        this.mRssAdapter = rssAdapter;
         }
 
 
@@ -68,7 +68,7 @@ public class RssAsyncTask extends AsyncTask<String, Integer, RssAdapter> {
                         if (item != null) item.setSummary(xmlPullParser.nextText());
                         }
                     }if (e == XmlPullParser.END_TAG && xmlPullParser.getName().equals("item")) {
-                    rssAdapter.add(item);
+                    mRssAdapter.add(item);
                     }
                 }
 
@@ -76,11 +76,11 @@ public class RssAsyncTask extends AsyncTask<String, Integer, RssAdapter> {
             } catch (Exception e) {
             e.printStackTrace();
         }
-        return rssAdapter;
+        return mRssAdapter;
         }
 
     @Override
     protected void onPostExecute(RssAdapter res) {
-        listView.setAdapter(res);
+        mRssListView.setAdapter(res);
         }
 }

@@ -14,19 +14,19 @@ import java.util.List;
  * Created by Atsuto5 on 2017/02/11.
  */
 public class RssAdapter extends ArrayAdapter<ItemBeans> {
-    private LayoutInflater inflater;
+    private LayoutInflater mInflater;
 
     public RssAdapter(Context context, int id, List<ClipData.Item> items) {
         super(context, id);
 
-        inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        mInflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         }
 
 
     public View getView(int position, View view, ViewGroup parent){
 
         if(view == null){
-        view = inflater.inflate(R.layout.rss_beans, null);
+        view = mInflater.inflate(R.layout.rss_beans, null);
         }
 
         ItemBeans item = this.getItem(position);
