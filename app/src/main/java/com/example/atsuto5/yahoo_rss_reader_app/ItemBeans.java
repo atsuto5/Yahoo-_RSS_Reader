@@ -5,23 +5,23 @@ package com.example.atsuto5.yahoo_rss_reader_app;
  */
 public class ItemBeans {
     private String mTitle;
-    private String mSummary;
+    private String mUrl;
 
 
     public void setTitle(String title) {
         this.mTitle = title;
     }
 
-    public void setSummary(String summary) {
-        this.mSummary = summary;
+    public void setUrl(String summary) {
+        this.mUrl = summary;
     }
 
     public String getTitle() {
         return this.mTitle;
     }
 
-    public String getSummary() {
-        return this.mSummary;
+    public String getUrl() {
+        return this.mUrl;
         }
 
 }

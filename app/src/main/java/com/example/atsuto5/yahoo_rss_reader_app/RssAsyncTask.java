@@ -2,10 +2,13 @@ package com.example.atsuto5.yahoo_rss_reader_app;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.text.LoginFilter;
 import android.util.Log;
 import android.util.Xml;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import org.apache.http.HttpResponse;
@@ -24,7 +27,6 @@ public class RssAsyncTask extends AsyncTask<String, Integer, RssAdapter> {
     private static final String TAG = "RssAsyncTask";
     private MainActivity mActivity;
     private ProgressDialog mLoadingDialog;
-
 
     public RssAsyncTask(ListView listView, RssAdapter rssAdapter, MainActivity activity) {
         this.mRssListView = listView;
@@ -76,7 +78,7 @@ public class RssAsyncTask extends AsyncTask<String, Integer, RssAdapter> {
                         }
 
                     if (xmlPullParser.getName().equals("link")) {
-                        if (item != null) item.setSummary(xmlPullParser.nextText());
+                        if (item != null) item.setUrl(xmlPullParser.nextText());
                         }
                     }if (e == XmlPullParser.END_TAG && xmlPullParser.getName().equals("item")) {
                     mRssAdapter.add(item);
@@ -94,5 +96,5 @@ public class RssAsyncTask extends AsyncTask<String, Integer, RssAdapter> {
     protected void onPostExecute(RssAdapter res) {
         mLoadingDialog.dismiss();
         mRssListView.setAdapter(res);
-        }
+    }
 }
