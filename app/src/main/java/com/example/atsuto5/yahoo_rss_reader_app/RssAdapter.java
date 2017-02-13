@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AlphaAnimation;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -45,13 +46,14 @@ public class RssAdapter extends ArrayAdapter<ItemBeans> {
 
         if(item != null){
 
-            TextView titleText = (TextView)view.findViewById(R.id.textView_1);
+            TextView titleText = (TextView)view.findViewById(R.id.titleTextView);
             titleText.setText(item.getTitle());
 
-            TextView contentsText = (TextView)view.findViewById(R.id.textView_2);
-            contentsText.setText(item.getUrl());
+            TextView urlText = (TextView)view.findViewById(R.id.urlTextView);
+            urlText.setText(item.getUrl());
 
             ImageButton webViewButton = (ImageButton)view.findViewById(R.id.webViewButton);
+            webViewButton.setBackgroundResource(R.drawable.button_selector);
             webViewButton.setOnClickListener(new View.OnClickListener()  {
                 //ボタンを押したときWebViewActivityに遷移する
                 public void onClick(View v) {

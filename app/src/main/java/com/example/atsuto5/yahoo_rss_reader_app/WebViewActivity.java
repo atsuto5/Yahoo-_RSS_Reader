@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.TextView;
@@ -14,6 +15,7 @@ import android.widget.TextView;
 public class WebViewActivity extends AppCompatActivity {
 
     String URL_KEY = "URL";
+    String TAG ="WebViewActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -28,6 +30,10 @@ public class WebViewActivity extends AppCompatActivity {
                return false;
            }
         });
+
+        //WebViewのJavaScriptを有効にする。
+        yahooWebView.getSettings().setJavaScriptEnabled(true);
+        Log.i(TAG, "getJavaScriptEnabled: " + yahooWebView.getSettings().getJavaScriptEnabled());
 
         //MainActivityからのIntentを取得
         Intent webViewIntent = getIntent();

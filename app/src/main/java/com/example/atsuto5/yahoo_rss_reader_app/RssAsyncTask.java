@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.text.LoginFilter;
 import android.util.Log;
 import android.util.Xml;
@@ -27,17 +28,24 @@ public class RssAsyncTask extends AsyncTask<String, Integer, RssAdapter> {
     private static final String TAG = "RssAsyncTask";
     private MainActivity mActivity;
     private ProgressDialog mLoadingDialog;
+    private boolean mDialogFlag;
+    private SwipeRefreshLayout mRefreshLayout;
 
-    public RssAsyncTask(ListView listView, RssAdapter rssAdapter, MainActivity activity) {
+    public RssAsyncTask(ListView listView, RssAdapter rssAdapter, MainActivity activity, SwipeRefreshLayout refreshLayout, Boolean dialogFlag) {
         this.mRssListView = listView;
         this.mRssAdapter = rssAdapter;
         this.mActivity = activity;
+        this.mDialogFlag = dialogFlag;
+        this.mRefreshLayout = refreshLayout;
+
         }
     @Override
     protected void onPreExecute(){
-        mLoadingDialog = new ProgressDialog(mActivity);
-        mLoadingDialog.setMessage("Now Loading...");
-        mLoadingDialog.show();
+        if(mDialogFlag) {
+            mLoadingDialog = new ProgressDialog(mActivity);
+            mLoadingDialog.setMessage("Now Loading...");
+            mLoadingDialog.show();
+        }
     }
 
 
@@ -94,7 +102,13 @@ public class RssAsyncTask extends AsyncTask<String, Integer, RssAdapter> {
 
     @Override
     protected void onPostExecute(RssAdapter res) {
-        mLoadingDialog.dismiss();
-        mRssListView.setAdapter(res);
+        if(mDialogFlag) {
+            //ダイアログを消去
+            mLoadingDialog.dismiss();
+            mRssListView.setAdapter(res);
+        }else{
+            //下スワイプのインジケータをストップ
+            mRefreshLayout.setRefreshing(false);
+            }
+        }
     }
-}
