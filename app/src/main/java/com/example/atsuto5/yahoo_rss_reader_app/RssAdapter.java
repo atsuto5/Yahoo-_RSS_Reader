@@ -14,6 +14,7 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,6 +22,7 @@ import java.util.List;
  */
 public class RssAdapter extends ArrayAdapter<ItemBeans> {
     private LayoutInflater mInflater;
+    private ArrayList<ItemBeans> itemList = new ArrayList<>();
     private String TAG = "RssAdapter";
     private static final String URL_KEY = "URL";
     private static final String PACKAGE_NAME = "com.example.atsuto5.yahoo_rss_reader_app";

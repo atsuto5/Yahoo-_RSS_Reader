@@ -26,11 +26,11 @@ public class MainActivity extends AppCompatActivity {
         ArrayList items = new ArrayList();
         mRssAdapter = new RssAdapter(this, R.layout.rss_beans, items);
         mRssList = (ListView) findViewById(R.id.Rss_ListView);
-        mMainActivity = new MainActivity();
+        mMainActivity = this;
 
         //データ取得開始
-        RssAsyncTask rssAsync = new RssAsyncTask(mRssList, mRssAdapter, this, mRefreshLayout, true);
-        rssAsync.execute("");
+        RssAsyncTask rssAsync = new RssAsyncTask(mRssList, mRssAdapter, mMainActivity, mRefreshLayout, true);
+        rssAsync.execute();
 
         //下にフリックした際、更新処理を行う
         mRefreshLayout = (SwipeRefreshLayout)findViewById(R.id.refresh_layout);
@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onRefresh() {
                 RssAsyncTask rssAsync = new RssAsyncTask(mRssList, mRssAdapter, mMainActivity, mRefreshLayout, false);
-                rssAsync.execute("");
+                rssAsync.execute();
             }
         });
     }
