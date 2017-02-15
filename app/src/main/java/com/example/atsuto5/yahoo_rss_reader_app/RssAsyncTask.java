@@ -71,7 +71,10 @@ public class RssAsyncTask extends AsyncTask<Void, Integer, ArrayList> {
 
             res = client.execute(req);
             if (HTTP_RESPONSE_OK == res.getStatusLine().getStatusCode()){
-                //mRssAdapter.clear();
+                mRssAdapter.setNotifyOnChange(false);
+                //レンダリングはせずに、オブジェクトを破棄する
+                mRssAdapter.clear();
+                mRssAdapter.setNotifyOnChange(true);
             }
 
 

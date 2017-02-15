@@ -23,8 +23,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ArrayList items = new ArrayList();
-        mRssAdapter = new RssAdapter(this, R.layout.rss_beans, items);
+        mRssAdapter = new RssAdapter(this, R.layout.rss_beans);
         mRssList = (ListView) findViewById(R.id.Rss_ListView);
         mMainActivity = this;
 
